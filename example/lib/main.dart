@@ -33,10 +33,11 @@ class MyApp extends StatelessWidget {
                   // There is no native intent/default app system in iOS so
                   // you have to do it yourself.
                 } else if (!result.didOpen && result.canOpen) {
-                  showDialog(
+                  showAdaptiveDialog(
                     context: context,
                     builder: (_) {
                       return MailAppPickerDialog(
+                        title: Text('Select email app to open'),
                         mailApps: result.options,
                       );
                     },
@@ -57,16 +58,15 @@ class MyApp extends StatelessWidget {
                   bcc: ['boss@domain.com'],
                 );
 
-                OpenMailAppResult result =
-                    await OpenMailApp.composeNewEmailInMailApp(
-                        nativePickerTitle: 'Select email app to compose',
-                        emailContent: email);
+                OpenMailAppResult result = await OpenMailApp.composeNewEmailInMailApp(
+                    nativePickerTitle: 'Select email app to compose', emailContent: email);
                 if (!result.didOpen && !result.canOpen) {
                   showNoMailAppsDialog(context);
                 } else if (!result.didOpen && result.canOpen) {
-                  showDialog(
+                  showAdaptiveDialog(
                     context: context,
                     builder: (_) => MailAppPickerDialog(
+                      title: Text('Select email app to open'),
                       mailApps: result.options,
                       emailContent: email,
                     ),
@@ -82,10 +82,11 @@ class MyApp extends StatelessWidget {
                 if (apps.isEmpty) {
                   showNoMailAppsDialog(context);
                 } else {
-                  showDialog(
+                  showAdaptiveDialog(
                     context: context,
                     builder: (context) {
                       return MailAppPickerDialog(
+                        title: Text('Select email app to open'),
                         mailApps: apps,
                         emailContent: EmailContent(
                           to: [

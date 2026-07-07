@@ -1,3 +1,8 @@
+## 0.5.0
+- Remove the iOS native implementation. It was dead code: on iOS all functionality
+  goes through url_launcher URL schemes and the method channel was never invoked.
+  The plugin no longer registers as a CocoaPods/SPM dependency in iOS builds.
+
 ## 0.4.4
 - Support Flutter 2.10.0
   - Update Android compileSdkVersion to 31 (Android 12)
